@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col">
+        <h1 style="text-align: center;">
+            Categories
+        </h1>
+    </div>
+</div>
+
+<ul *ngIf="categories?.length > 0">
+    <li class="listDetail" *ngFor="let category of categories">
+        <span (click)="getallProductsByCategory(category)">{{category}}</span>
+    </li>
+  </ul>
+
+  <div class="row mt-4 mb-4">
+      <div class="col">
+        <input class="form-control" type="text" name="search"  type="text"
+        placeholder="Search Product" (keyup)="updateFilter($event)">
+      </div>
+  </div>
+<div *ngIf="tempProductsList?.length > 0">
+    <h2 style="text-align: center; margin-top: 4px;margin-bottom: 4px;">Products</h2>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <div class="col" *ngFor="let product of tempProductsList">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">{{product.title}}</h4>
+            </div>
+            <div class="card-body">
+                <img src={{product.image}} height="100" width="100" alt="no image">
+              <h1 class="card-title pricing-card-title">$ {{product.price}}</h1>
+              <p>
+                {{product.description}}
+              </p>
+              <div class="row"><b>Rating : {{product.rating.rate}}</b></div>
+              <div class="row">
+                <b>Availablity: {{product.rating.count}}</b>
+              </div>
+              <button type="button" class="w-100 btn btn-lg btn-outline-primary" (click)="checkProduct()">Check This Product</button>
+            </div>
+          </div>
+        </div>
+        </div>
+</div>
+  
+
